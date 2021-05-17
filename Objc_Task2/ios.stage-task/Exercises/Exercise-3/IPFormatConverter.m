@@ -42,7 +42,7 @@
                  }
      
     }//////////////////////////
-            return [NSString initWithString: m];
+            return [[NSString alloc]initWithString: m];
              }
 }
 
