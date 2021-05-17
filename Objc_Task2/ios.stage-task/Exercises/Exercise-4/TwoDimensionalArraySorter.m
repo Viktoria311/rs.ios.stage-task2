@@ -4,7 +4,7 @@
 
 - (NSArray *)twoDimensionalSort:(NSArray<NSArray *> *)array {
 
-if (![array isKindOf: [NSArray class]] || ![array[0] isKindOf: [NSArray class]] || array == nil) { return @[];
+if (![array isKindOfClass: [NSArray class]] || ![array[0] isKindOf: [NSArray class]] || array == nil) { return @[];
 } else {
     //создать мутабельные массивы цифр и строк
     NSMutableArray *arrOfNumbers = [NSMutableArray new];
@@ -28,18 +28,18 @@ if (![array isKindOf: [NSArray class]] || ![array[0] isKindOf: [NSArray class]] 
    //ТЕПЕРЬ НАДО сортировать оба массива. если arrOfNumbers!= nil и другой тоже
     if (![arrOfNumbers isEqualToArray: @[]]) {
         //сортируем arrOfNumbers
-        
+        NSArray *numbersSorted = [[NSArray arrayWithArray: arrOfNumbers] sortedArrayUsingSelector:@selector(compare:)];
     } 
     if (![arrOfStrings isEqualToArray: @[]]) {
         //сортируем arrOfStrings
-        
+        NSArray *sortedArrayOfStrings = [[NSArray arrayWithArray: arrOfStrings] sortedArrayUsingSelector:@selector(compare:) ];
     }
     if ([arrOfNumbers isEqualToArray: @[]]) {return [NSArray arrayWithArray: arrOfStrings];
    } else if ([arrOfStrings isEqualToArray: @[]]) {
     return [NSArray arrayWithArray: arrOfNumbers];
     } else if (![arrOfNumbers isEqualToArray: @[]] && ![arrOfStrings isEqualToArray: @[]]) {
-    //сортировка arrOfStrings НАОБОРОТ
-        return [NSArray arrayWithArray: [[NSMutableAray addObject: arrOfNumbers] addObject: arrOfStrings]];
+    //сортировка arrOfStrings НАОБОРОТ происходит внутри
+        return [NSArray arrayWithArray: [[NSMutableArray arrayWithArray: numbersSorted] addObject: [[sortedArrayOfStrings reverseObjectEnumerator] allObjects]]];
     }
 }//это скобка от else
 
